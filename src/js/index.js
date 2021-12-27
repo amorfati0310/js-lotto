@@ -14,4 +14,4 @@ const onModalClose = () => {
 $showResultButton.addEventListener('click', onModalShow);
 $modalClose.addEventListener('click', onModalClose);
 
-console.log('test   ');
+console.log($lottoNumbersToggleButton);
