@@ -49,7 +49,7 @@ class LottoTickets extends View {
   }
 
   renderTickets(tickets) {
-    this.ticketsNumbersEl.innerHTML = tickets
+    this.ticketsEl.innerHTML = tickets
       .map(
         (ticket) => `<p class="d-flex" data-cy="lotto-ticket">
                           <span class="mx-1 text-4xl">🎟️ </span>
