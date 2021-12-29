@@ -12,4 +12,5 @@ module.exports = {
     'import/extensions': ['error', 'always'],
     'no-unused-vars': ['error', { args: 'after-used', argsIgnorePattern: '^_' }],
   },
+  ignorePatterns: ['./cypress/**/*.js, ./cypress/**/*.js'],
 };
