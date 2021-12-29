@@ -1,0 +1,15 @@
+#lotto-tickets.show .lotto-ticktes-images {
+  display: none;
+}
+
+#lotto-tickets.show .lotto-ticktes-numbers {
+  display: block;
+}
+
+#lotto-tickets .lotto-ticktes-images {
+  display: block;
+}
+
+#lotto-tickets .lotto-ticktes-numbers {
+  display: none;
+}
