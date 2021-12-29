@@ -8,5 +8,8 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    'import/extensions': ['error', 'always'],
+    'no-unused-vars': ['error', { args: 'after-used', argsIgnorePattern: '^_' }],
+  },
 };
