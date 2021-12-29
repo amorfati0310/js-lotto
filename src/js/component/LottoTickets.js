@@ -3,8 +3,8 @@ import View from './View.js';
 const switchId = 'lotto-tickets__switch';
 const countId = 'lotto-tickets__count';
 
-const imageTicketsClassName = 'lotto-ticktes-numbers';
-const numberTicketsClassName = 'lotto-ticktes-images';
+const imageTicketsClassName = 'lotto-ticktes-images';
+const numberTicketsClassName = 'lotto-ticktes-numbers';
 class LottoTickets extends View {
   constructor(el) {
     super(el);
@@ -16,7 +16,7 @@ class LottoTickets extends View {
 
   init() {
     this.on('click', (e) => this.handleClickSwitch(e));
-    this.render({});
+    this.render();
   }
 
   handleClickSwitch(e) {
@@ -41,7 +41,7 @@ class LottoTickets extends View {
     this.el.classList.remove('show');
   }
 
-  render({ tickets = [] }) {
+  render(tickets = []) {
     this.renderTotal(tickets.length);
     this.renderImageTickets(tickets);
     this.renderNumberTickets(tickets);

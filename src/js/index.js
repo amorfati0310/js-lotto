@@ -21,7 +21,7 @@ $modalClose.addEventListener('click', onModalClose);
 
 console.log($lottoNumbersToggleButton);
 
-function main() {
+(function main() {
   /**
    * init store
    */
@@ -41,11 +41,12 @@ function main() {
   /**
    * init subscriber
    */
-  const ticketsSubscriber = new Subscriber(({ tickets }) => {
+  const ticketsSubscriber = new Subscriber(({ tickets = [] }) => {
     if (!tickets) {
       return;
     }
 
+    lottoTickets.render(tickets);
     console.log(`tickets = ${JSON.stringify(tickets)}`);
   });
 
@@ -61,16 +62,7 @@ function main() {
   ticketsSubscriber.subscribe(lottoState);
 
   lottoState.setState({
-    tickets: [1, 2, 3, 4, 5, 6],
+    tickets: [],
     winningNumbers: [],
   });
-
-  console.log('lottoState', lottoState);
-  // lottoState.tickets = [1, 2, 3, 4, 5, 6];
-}
-
-// (function () {
-//   main();
-// })();
-
-main();
+})();
