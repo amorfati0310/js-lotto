@@ -19,6 +19,6 @@ describe('', () => {
     // when
     cy.purchase(3000);
     // then
-    cy.get(`[data-cy="image-ticket"]`).should('have.length', 3);
+    cy.get(`[data-cy="lotto-ticket"]`).should('have.length', 3);
   });
 });

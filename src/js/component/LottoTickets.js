@@ -3,13 +3,11 @@ import View from './View.js';
 const switchId = 'lotto-tickets__switch';
 const countId = 'lotto-tickets__count';
 
-const imageTicketsClassName = 'lotto-ticktes-images';
-const numberTicketsClassName = 'lotto-ticktes-numbers';
+const ticketsClassName = 'lotto-ticktes';
 class LottoTickets extends View {
   constructor(el) {
     super(el);
-    this.ticketsImagesEl = this.el.querySelector(`.${imageTicketsClassName}`);
-    this.ticketsNumbersEl = this.el.querySelector(`.${numberTicketsClassName}`);
+    this.ticketsEl = this.el.querySelector(`.${ticketsClassName}`);
     this.countsEl = this.el.querySelector(`#${countId}`);
     this.init();
   }
@@ -43,26 +41,19 @@ class LottoTickets extends View {
 
   render(tickets = []) {
     this.renderTotal(tickets.length);
-    this.renderImageTickets(tickets);
-    this.renderNumberTickets(tickets);
+    this.renderTickets(tickets);
   }
 
   renderTotal(count) {
     this.countsEl.innerHTML = `총 ${count}개를 구매하였습니다.`;
   }
 
-  renderImageTickets(tickets) {
-    this.ticketsImagesEl.innerHTML = tickets
-      .map((_) => `<span data-cy="image-ticket" class="mx-1 text-4xl">🎟️ </span>`)
-      .join('');
-  }
-
-  renderNumberTickets(tickets) {
+  renderTickets(tickets) {
     this.ticketsNumbersEl.innerHTML = tickets
       .map(
-        (ticket) => `<p class="d-flex" data-cy="number-ticket">
+        (ticket) => `<p class="d-flex" data-cy="lotto-ticket">
                           <span class="mx-1 text-4xl">🎟️ </span>
-                          <span class="mx-1 text-4xl">${ticket.join(', ')}</span>
+                          <span class="mx-1 text-4xl lotto-ticket-numbers">${ticket.join(', ')}</span>
                       </p>`,
       )
       .join('');
