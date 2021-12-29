@@ -6,7 +6,7 @@ import LottoTickets from './component/LottoTickets.js';
 const $showResultButton = document.querySelector('.open-result-modal-button');
 const $modalClose = document.querySelector('.modal-close');
 const $modal = document.querySelector('.modal');
-const $lottoNumbersToggleButton = document.querySelector('.lotto-numbers-toggle-button');
+// const $lottoNumbersToggleButton = document.querySelector('.lotto-numbers-toggle-button');
 
 const onModalShow = () => {
   $modal.classList.add('open');
@@ -18,8 +18,6 @@ const onModalClose = () => {
 
 $showResultButton.addEventListener('click', onModalShow);
 $modalClose.addEventListener('click', onModalClose);
-
-console.log($lottoNumbersToggleButton);
 
 (function main() {
   /**
@@ -37,7 +35,6 @@ console.log($lottoNumbersToggleButton);
   const lottoTickets = new LottoTickets(document.querySelector('#lotto-tickets'));
 
   lottoPurchaseForm.onSubmit((price) => lottoState.purchaseLotto(price));
-  console.log(lottoTickets);
   /**
    * init subscriber
    */
@@ -47,7 +44,6 @@ console.log($lottoNumbersToggleButton);
     }
 
     lottoTickets.render(tickets);
-    console.log(`tickets = ${JSON.stringify(tickets)}`);
   });
 
   const winningNumbersSubscriber = new Subscriber(({ winningNumbers }) => {
@@ -55,14 +51,9 @@ console.log($lottoNumbersToggleButton);
       return;
     }
 
-    console.log(`winningNumbers = ${JSON.stringify(winningNumbers)}`);
+    console.log(winningNumbers);
   });
 
   winningNumbersSubscriber.subscribe(lottoState);
   ticketsSubscriber.subscribe(lottoState);
-
-  lottoState.setState({
-    tickets: [],
-    winningNumbers: [],
-  });
 })();

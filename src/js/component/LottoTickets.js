@@ -57,7 +57,12 @@ class LottoTickets extends View {
 
   renderNumberTickets(tickets) {
     this.ticketsNumbersEl.innerHTML = tickets
-      .map((ticket) => `<p><span class="mx-1 text-4xl">${ticket.join(', ')}</span></p>`)
+      .map(
+        (ticket) => `<p class="d-flex">
+                          <span class="mx-1 text-4xl">🎟️ </span>
+                          <span class="mx-1 text-4xl">${ticket.join(', ')}</span>
+                      </p>`,
+      )
       .join('');
   }
 }
