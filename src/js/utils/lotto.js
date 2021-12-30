@@ -1,4 +1,3 @@
-import validator from './validator.js';
 import { baseTicketPrice, lottoNumbers } from './const/lotto.js';
 
 const shuffleArray = (array) => {
@@ -12,8 +11,6 @@ const shuffleArray = (array) => {
 };
 
 const getLotto = (price) => {
-  validator.validtePurchse(price);
-
   const ticketCount = Math.floor(price / baseTicketPrice);
   return [...Array(ticketCount)].map((_) => shuffleArray(lottoNumbers).slice(0, 6));
 };
