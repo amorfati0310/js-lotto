@@ -40,5 +40,12 @@ class LottoState {
       tickets: lottoUtils.getLotto(price),
     });
   }
+
+  setWinningNumbers(ticket) {
+    console.log('ticket', ticket);
+    this.setState({
+      winningNumbers: ticket,
+    });
+  }
 }
 export default LottoState;

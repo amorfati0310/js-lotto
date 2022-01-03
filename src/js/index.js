@@ -2,6 +2,7 @@ import Subscriber from './Subscriber.js';
 import LottoState from './model/Store.js';
 import LottoPurchaseForm from './component/LottoPurchaseForm.js';
 import LottoTickets from './component/LottoTickets.js';
+import WinningTicketForm from './component/WinningTicketForm.js';
 
 const $showResultButton = document.querySelector('.open-result-modal-button');
 const $modalClose = document.querySelector('.modal-close');
@@ -33,8 +34,10 @@ $modalClose.addEventListener('click', onModalClose);
    */
   const lottoPurchaseForm = new LottoPurchaseForm(document.querySelector('#lotto-purchase__form'));
   const lottoTickets = new LottoTickets(document.querySelector('#lotto-tickets'));
+  const winningTicketForm = new WinningTicketForm(document.querySelector('#winning-ticket__form'));
 
   lottoPurchaseForm.onSubmit((price) => lottoState.purchaseLotto(price));
+  winningTicketForm.onSubmit((winningTicket) => lottoState.setWinningNumbers(winningTicket));
   /**
    * init subscriber
    */
