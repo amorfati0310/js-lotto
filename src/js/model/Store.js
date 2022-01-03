@@ -28,7 +28,12 @@ class LottoState {
   }
 
   notify(newState) {
-    this.#observers.forEach((fn) => fn(newState));
+    this.#observers.forEach((fn) =>
+      fn({
+        ...this.#state,
+        ...newState,
+      }),
+    );
   }
 
   getTicketsCount() {
@@ -42,10 +47,13 @@ class LottoState {
   }
 
   setWinningNumbers(ticket) {
-    console.log('ticket', ticket);
     this.setState({
       winningNumbers: ticket,
     });
+  }
+
+  reset() {
+    this.setState(defaultState);
   }
 }
 export default LottoState;

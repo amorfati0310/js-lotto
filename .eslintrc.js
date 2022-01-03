@@ -10,7 +10,7 @@ module.exports = {
   },
   rules: {
     'import/extensions': ['error', 'always'],
-    'no-unused-vars': ['error', { args: 'after-used', argsIgnorePattern: '^_' }],
+    'no-unused-vars': ['warn', { args: 'after-used', argsIgnorePattern: '^_' }],
   },
   ignorePatterns: ['./cypress/**/*.js, ./cypress/**/*.js'],
 };

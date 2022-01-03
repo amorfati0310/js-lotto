@@ -3,22 +3,7 @@ import LottoState from './model/Store.js';
 import LottoPurchaseForm from './component/LottoPurchaseForm.js';
 import LottoTickets from './component/LottoTickets.js';
 import WinningTicketForm from './component/WinningTicketForm.js';
-
-const $showResultButton = document.querySelector('.open-result-modal-button');
-const $modalClose = document.querySelector('.modal-close');
-const $modal = document.querySelector('.modal');
-// const $lottoNumbersToggleButton = document.querySelector('.lotto-numbers-toggle-button');
-
-const onModalShow = () => {
-  $modal.classList.add('open');
-};
-
-const onModalClose = () => {
-  $modal.classList.remove('open');
-};
-
-$showResultButton.addEventListener('click', onModalShow);
-$modalClose.addEventListener('click', onModalClose);
+import ResultModal from './component/ResultModal.js';
 
 (function main() {
   /**
@@ -32,12 +17,22 @@ $modalClose.addEventListener('click', onModalClose);
   /**
    * init views
    */
-  const lottoPurchaseForm = new LottoPurchaseForm(document.querySelector('#lotto-purchase__form'));
-  const lottoTickets = new LottoTickets(document.querySelector('#lotto-tickets'));
-  const winningTicketForm = new WinningTicketForm(document.querySelector('#winning-ticket__form'));
+  const lottoPurchaseForm = new LottoPurchaseForm({
+    el: document.querySelector('#lotto-purchase__form'),
+    onSubmit: (price) => lottoState.purchaseLotto(price),
+  });
+  const lottoTickets = new LottoTickets({
+    el: document.querySelector('#lotto-tickets'),
+  });
+  const winningTicketForm = new WinningTicketForm({
+    el: document.querySelector('#winning-ticket__form'),
+    onSubmit: (winningTicket) => lottoState.setWinningNumbers(winningTicket),
+  });
+  const resultModal = new ResultModal({
+    el: document.querySelector('.modal'),
+    onReset: () => lottoState.reset(),
+  });
 
-  lottoPurchaseForm.onSubmit((price) => lottoState.purchaseLotto(price));
-  winningTicketForm.onSubmit((winningTicket) => lottoState.setWinningNumbers(winningTicket));
   /**
    * init subscriber
    */
@@ -49,12 +44,12 @@ $modalClose.addEventListener('click', onModalClose);
     lottoTickets.render(tickets);
   });
 
-  const winningNumbersSubscriber = new Subscriber(({ winningNumbers }) => {
-    if (!winningNumbers) {
+  const winningNumbersSubscriber = new Subscriber(({ tickets, winningNumbers }) => {
+    if (!winningNumbers.length || !tickets.length) {
       return;
     }
 
-    console.log(winningNumbers);
+    resultModal.showResult({ winningNumbers, tickets });
   });
 
   winningNumbersSubscriber.subscribe(lottoState);

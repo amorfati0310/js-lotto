@@ -5,7 +5,7 @@ const countId = 'lotto-tickets__count';
 
 const ticketsClassName = 'lotto-ticktes';
 class LottoTickets extends View {
-  constructor(el) {
+  constructor({ el }) {
     super(el);
     this.ticketsEl = this.el.querySelector(`.${ticketsClassName}`);
     this.countsEl = this.el.querySelector(`#${countId}`);
