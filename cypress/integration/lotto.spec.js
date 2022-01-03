@@ -31,15 +31,16 @@ describe('', () => {
   });
 
   it('다시 시작하기 버튼을 누르면 초기화 되서 다시 구매를 시작할 수 있다', () => {
+    cy.reload();
     // when
     cy.purchase(3000);
     cy.checkResult([1, 2, 3, 4, 5, 6, 7]);
     cy.restart().then(() => {
-      cy.get('#lotto-purchase').should('be.empty');
+      cy.get('#lotto-purchase').should('have.value', '');
       cy.get('[data-cy=winning-ticket__form] input[type="number"]').each(($el, i) => {
         cy.wrap($el).should('be.empty');
       });
-      cy.contains('당첨 통계').should('not.exist');
+      cy.contains('당첨 통계').should('not.be.visible');
     });
   });
 });

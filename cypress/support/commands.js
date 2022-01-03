@@ -35,6 +35,6 @@ Cypress.Commands.add('checkResult', (winningTicket) => {
   cy.get('[data-cy=winning-ticket__form]').submit();
 });
 
-Cypress.Commands.add('restart', (winningTicket) => {
-  cy.get('다시 시작하기').click();
+Cypress.Commands.add('restart', () => {
+  cy.contains('다시 시작하기').click();
 });
