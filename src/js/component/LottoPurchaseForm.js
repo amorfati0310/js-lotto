@@ -13,7 +13,7 @@ class LottoPurchaseForm extends View {
       e.preventDefault();
       const form = e.target;
       const { value } = form[inputName];
-      validator.validtePurchse(value);
+      validator.validatePurchse(value);
 
       onSubmit(value);
       e.target.reset();

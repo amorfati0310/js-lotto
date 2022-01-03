@@ -36,15 +36,11 @@ import ResultModal from './component/ResultModal.js';
   /**
    * init subscriber
    */
-  const ticketsSubscriber = new Subscriber(({ tickets = [] }) => {
-    if (!tickets) {
-      return;
+  const lottoSubScriber = new Subscriber(({ tickets, winningNumbers }) => {
+    if (tickets.length) {
+      lottoTickets.render(tickets);
     }
 
-    lottoTickets.render(tickets);
-  });
-
-  const winningNumbersSubscriber = new Subscriber(({ tickets, winningNumbers }) => {
     if (!winningNumbers.length || !tickets.length) {
       return;
     }
@@ -52,6 +48,5 @@ import ResultModal from './component/ResultModal.js';
     resultModal.showResult({ winningNumbers, tickets });
   });
 
-  winningNumbersSubscriber.subscribe(lottoState);
-  ticketsSubscriber.subscribe(lottoState);
+  lottoSubScriber.subscribe(lottoState);
 })();
