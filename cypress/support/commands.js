@@ -28,6 +28,18 @@ Cypress.Commands.add('purchase', (amount) => {
   cy.get('[data-cy=lotto-purchase__form]').submit();
 });
 
+Cypress.Commands.add('autoPurchase', (amount) => {
+  cy.get('[data-cy=lotto-manual-purchase]').type(amount);
+  cy.get('[data-cy=manual-count__form]').submit();
+});
+
+Cypress.Commands.add('submitAutoTicket', (autoTickets) => {
+  cy.get('[data-cy=manual-lotto__form] input[type="number"]').each(($el, i) => {
+    cy.wrap($el).type(autoTickets[i]);
+  });
+  cy.get('[data-cy=manual-lotto__form]').submit();
+});
+
 Cypress.Commands.add('checkResult', (winningTicket) => {
   cy.get('[data-cy=winning-ticket__form] input[type="number"]').each(($el, i) => {
     cy.wrap($el).type(winningTicket[i]);

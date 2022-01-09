@@ -9,7 +9,9 @@
     "lint": "eslint src --fix",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:e2e": "cypress run --spec 'cypress/integration/*' --config video=false",
+    "serve": "live-server ."
   },
   "devDependencies": {
     "chai": "^4.3.4",
@@ -19,6 +21,7 @@
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.1.4",
+    "live-server": "^1.2.1",
     "prettier": "^2.5.1"
   },
   "husky": {

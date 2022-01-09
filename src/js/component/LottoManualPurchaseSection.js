@@ -10,36 +10,42 @@ const template = (count) =>
   <h4 class="mt-0 mb-3 text-center">수동 티켓 ${index + 1}</h4>
   <div class="d-flex-between mb-3">
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
       max="45"
     />
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
       max="45"
     />
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
       max="45"
     />
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
       max="45"
     />
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
       max="45"
     />
     <input
+      name="manual"
       type="number"
       class="winning-number mx-1 text-center"
       min="1"
@@ -82,6 +88,10 @@ class LottoManualPurchaseSection extends View {
     this.el.classList.remove('hide');
   }
 
+  hideManualSection() {
+    this.el.classList.add('hide');
+  }
+
   showManualLottoForm() {
     this.manualLottoForm.classList.remove('hide');
   }
@@ -100,6 +110,48 @@ class LottoManualPurchaseSection extends View {
       input.disabled = true;
     });
     this.manualLottoForm.querySelector('button').disabled = true;
+  }
+
+  reset() {
+    this.hideManualSection();
+    this.manualLottoForm.innerHTML = `
+    <form 
+    data-cy="manual-lotto__form"
+    id="manual-lotto__form"
+    class="mt-5 hide" 
+  >
+    <button
+      type="submit"
+      class="open-result-modal-button mt-5 btn btn-cyan w-100"
+    >
+      수동 티켓 발급
+    </button>
+  </form>`;
+    this.manualCountForm.innerHTML = `
+  <form 
+  data-cy="manual-count__form"
+  id="manual-count__form"
+  class="mt-5" 
+>
+  <label 
+    for="lotto-manual-purchase"
+    class="mb-2 d-inline-block"
+  >수동 구매할 갯수를 입력해주세요
+  </label>
+  <div class="d-flex">
+    <input 
+      class="w-100 mr-2 pl-2"
+      data-cy="lotto-manual-purchase"
+      name="lotto-manual-purchase"
+      type="number"
+      placeholder="몇 개를 수동 구매하실지 알려주세요"
+      min="0"
+      max="10"
+    >
+    <button class="btn btn-cyan" type="submit">선택</button>
+  </div>
+</form>
+  `;
   }
 }
 

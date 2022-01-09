@@ -83,11 +83,16 @@ import ResultModal from './component/ResultModal.js';
         winningTicketForm.show();
       }
 
-      if (!winningNumbers.length || !tickets.length) {
-        return;
+      if (winningNumbers.length && tickets.length) {
+        resultModal.showResult({ winningNumbers, tickets });
       }
 
-      resultModal.showResult({ winningNumbers, tickets });
+      if (purchaseCount === 0) {
+        lottoPurchaseForm.reset();
+        lottoManualPurchaseSection.reset();
+        lottoTickets.reset();
+        winningTicketForm.reset();
+      }
     },
   );
 

@@ -49,7 +49,6 @@ class LottoTickets extends View {
   }
 
   renderTickets(tickets) {
-    console.log(tickets);
     this.ticketsEl.innerHTML = tickets
       .map(
         (ticket) => `<p class="d-flex" data-cy="lotto-ticket">
@@ -62,6 +61,14 @@ class LottoTickets extends View {
 
   show() {
     this.el.classList.remove('hide');
+  }
+
+  hide() {
+    this.el.classList.add('hide');
+  }
+
+  reset() {
+    this.hide();
   }
 }
 

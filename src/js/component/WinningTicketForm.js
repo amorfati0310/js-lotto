@@ -20,6 +20,11 @@ class WinningTicketForm extends View {
   show() {
     this.el.classList.remove('hide');
   }
+
+  reset() {
+    this.el.classList.add('hide');
+    this.el.reset();
+  }
 }
 
 export default WinningTicketForm;

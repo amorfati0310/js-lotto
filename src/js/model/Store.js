@@ -76,6 +76,7 @@ class LottoState {
   setManualTickets(tickets = []) {
     const lottoTickets = [...tickets, ...lottoUtils.getAutoLotto(this.getAutoCount())];
     this.setState({
+      ...this.#state,
       tickets: lottoTickets,
       isFinishedManualPurchasing: true,
     });

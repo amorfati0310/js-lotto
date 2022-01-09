@@ -24,6 +24,16 @@ class LottoPurchaseForm extends View {
     this.el.querySelector('input').disabled = true;
     this.el.querySelector('button').disabled = true;
   }
+
+  enable() {
+    this.el.querySelector('input').disabled = false;
+    this.el.querySelector('button').disabled = false;
+  }
+
+  reset() {
+    this.enable();
+    this.el.reset();
+  }
 }
 
 export default LottoPurchaseForm;
