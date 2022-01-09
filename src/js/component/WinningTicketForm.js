@@ -12,9 +12,13 @@ class WinningTicketForm extends View {
       e.preventDefault();
       const form = e.target;
       const winningTicket = [...form.querySelectorAll('input[type="number"]')].map((input) => Number(input?.value));
-      validator.validateWinningTickets(winningTicket);
+      validator.validateMinNumber(winningTicket);
       onSubmit(winningTicket);
     });
+  }
+
+  show() {
+    this.el.classList.remove('hide');
   }
 }
 

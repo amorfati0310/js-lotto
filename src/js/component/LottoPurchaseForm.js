@@ -16,8 +16,13 @@ class LottoPurchaseForm extends View {
       validator.validatePurchse(value);
 
       onSubmit(value);
-      e.target.reset();
+      form[inputName].disabled = true;
     });
+  }
+
+  disable() {
+    this.el.querySelector('input').disabled = true;
+    this.el.querySelector('button').disabled = true;
   }
 }
 

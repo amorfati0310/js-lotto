@@ -1,4 +1,4 @@
-import { baseTicketPrice, lottoNumbers, rank } from './const/lotto.js';
+import { baseTicketPrice, lottoNumbers, rank, ticketNumbersCount } from './const/lotto.js';
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
@@ -10,10 +10,19 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-const getLotto = (price) => {
-  const ticketCount = Math.floor(price / baseTicketPrice);
-  return [...Array(ticketCount)].map((_) => shuffleArray(lottoNumbers).slice(0, 6));
-};
+function chunk(array, lenth = ticketNumbersCount) {
+  const chunks = [];
+  let i = 0;
+    const n = array.length;
+
+  while (i < n) {
+    chunks.push(array.slice(i, (i += lenth)));
+  }
+
+  return chunks;
+}
+
+const getAutoLotto = (count) => [...Array(count)].map((_) => shuffleArray(lottoNumbers).slice(0, 6));
 
 const getRank = (tickets, winningNumbers) => {
   const checkSameCount = (ticket) => {
@@ -51,7 +60,11 @@ const getRank = (tickets, winningNumbers) => {
   }, rank);
 };
 
+const getPurchaseCount = (price) => Math.ceil(price / baseTicketPrice);
+
 export default {
-  getLotto,
+  getAutoLotto,
   getRank,
+  getPurchaseCount,
+  chunk,
 };

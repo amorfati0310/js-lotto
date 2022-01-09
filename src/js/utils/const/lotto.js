@@ -1,5 +1,6 @@
 export const lottoNumbers = [...Array(45).keys()].map((v) => v + 1);
 export const baseTicketPrice = 1000;
+export const ticketNumbersCount = 6;
 export const rank = {
   1: {
     count: 0,

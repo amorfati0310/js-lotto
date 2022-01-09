@@ -10,7 +10,7 @@ const validatePurchse = (price) => {
   return true;
 };
 
-const validateWinningTickets = (winningTicket) => {
+const validateMinNumber = (winningTicket) => {
   if (!winningTicket.every((ticketNumber) => ticketNumber > 0)) {
     throw Error('당첨번호 입력이 잘 못되었습니다.');
   }
@@ -18,5 +18,5 @@ const validateWinningTickets = (winningTicket) => {
 
 export default {
   validatePurchse,
-  validateWinningTickets,
+  validateMinNumber,
 };

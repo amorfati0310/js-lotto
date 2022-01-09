@@ -28,13 +28,51 @@
                 type="number"
                 class="w-100 mr-2 pl-2"
                 placeholder="구입 금액"
+                min="0"
               />
               <button type="submit" class="btn btn-cyan">확인</button>
             </div>
           </form>
           <section 
+            id="manual-purchase__section"
+            class="hide"
+          >
+            <form 
+              id="manual-count__form"
+              class="mt-5" 
+            >
+              <label 
+                for="lotto-manual-purchase"
+                class="mb-2 d-inline-block"
+              >수동 구매할 갯수를 입력해주세요
+              </label>
+              <div class="d-flex">
+                <input 
+                  class="w-100 mr-2 pl-2"
+                  name="lotto-manual-purchase"
+                  type="number"
+                  placeholder="몇 개를 수동 구매하실지 알려주세요"
+                  min="0"
+                  max="10"
+                >
+                <button class="btn btn-cyan" type="submit">선택</button>
+              </div>
+            </form>
+            <form 
+              id="manual-lotto__form"
+              class="mt-5 hide" 
+            >
+              <button
+                type="submit"
+                class="open-result-modal-button mt-5 btn btn-cyan w-100"
+              >
+                수동 티켓 발급
+              </button>
+            </form>
+          </section>
+          <section 
             id="lotto-tickets"
-            class="mt-9"
+            class="mt-9 hide"
           >
             <div class="d-flex">
               <label 
@@ -65,7 +103,7 @@
             </div>
           </section>
           <form 
-            class="mt-9"
+            class="mt-9 hide"
             data-cy="winning-ticket__form"
             id="winning-ticket__form"  
           >

@@ -3,6 +3,11 @@ import lottoUtils from '../utils/lotto.js';
 const defaultState = {
   tickets: [],
   winningNumbers: [],
+  purchaseCount: 0,
+  isPurchasing: false,
+  manualPurchaseCount: 0,
+  isFinishedManualPurchasing: false,
+  showManualSection: false,
 };
 
 class LottoState {
@@ -19,6 +24,12 @@ class LottoState {
       ...this.#state,
       ...newState,
     };
+    console.log(
+      (this.#state = {
+        ...this.#state,
+        ...newState,
+      }),
+    );
 
     this.notify(newState);
   }
@@ -42,7 +53,31 @@ class LottoState {
 
   purchaseLotto(price) {
     this.setState({
-      tickets: lottoUtils.getLotto(price),
+      purchaseCount: lottoUtils.getPurchaseCount(price),
+      isPurchasing: true,
+      showManualSection: true,
+    });
+  }
+
+  setManualPurchaseCount(count) {
+    this.setState({
+      manualPurchaseCount: count,
+    });
+
+    if (count === 0) {
+      this.setManualTickets();
+    }
+  }
+
+  getAutoCount() {
+    return this.#state.purchaseCount - this.#state.manualPurchaseCount;
+  }
+
+  setManualTickets(tickets = []) {
+    const lottoTickets = [...tickets, ...lottoUtils.getAutoLotto(this.getAutoCount())];
+    this.setState({
+      tickets: lottoTickets,
+      isFinishedManualPurchasing: true,
     });
   }
 

@@ -28,6 +28,11 @@
   display: inline-block;
 }
 
+.d-flex-between {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* Layout - Top / Right / Bottom / Left */
 
 .mt-2 {
