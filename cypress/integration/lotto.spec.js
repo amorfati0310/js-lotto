@@ -11,8 +11,8 @@
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
 before(() => {
-  cy.visit('localhost:8080');
-  // cy.visit('https://amorfati0310.github.io/js-lotto/');
+  // cy.visit('localhost:8080');
+  cy.visit('https://amorfati0310.github.io/js-lotto/');
 });
 
 describe('', () => {
